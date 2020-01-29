@@ -48,9 +48,8 @@ RUN apt-get update && \
         apt-get install libdb++-dev -y && \
         apt-get install libboost-all-dev -y && \
         apt-get install libqrencode-dev -y && \
-        apt-get install git -y  && \
-        apt-get install tmux -y
-d
+        apt-get install git tmux tree zip nano -y \
+
 RUN  git clone https://github.com/peterli360/whitecoin-1.git  whitecoin && \
         cd whitecoin/src && \
         make -f makefile.unix USE_UPNP=-  && \
