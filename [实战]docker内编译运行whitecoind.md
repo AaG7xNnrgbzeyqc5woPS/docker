@@ -13,16 +13,17 @@
   docker --version
   
   // run unbuntu 16.04 for compliling and running whitecoind
+  
   docker run \
   -itd \
-  --restart=unless-stopped
-  --privileged=true \
+  --restart=always \
+  --privileged \
   --workdir ~ \
   --name whitecoind \
   -p 15814:15814 \
   -v /root/.whitecoin-xwc:/root/.whitecoin-xwc \
   ubuntu:16.04 /bin/bash
-  
+
   
  //login docker container whitecoind
  docker exec -it whitecoind /bin/bash
@@ -40,7 +41,7 @@ docker rm  whitecoind
 
 ------
 DOCKFILE
-FROM ubuntu16.04
+FROM ubuntu:16.04
 RUN apt-get update && \
         apt-get upgrade -y && \
         apt-get install build-essential -y  && \
@@ -54,6 +55,7 @@ RUN  git clone https://github.com/peterli360/whitecoin-1.git  whitecoin && \
         cd whitecoin/src && \
         make -f makefile.unix USE_UPNP=-  && \
         strip whitecoind \
+EXPOSE 15814
 
 ```
 
